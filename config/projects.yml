@@ -3,4 +3,7 @@ defaults:
   target_branch: main
   merge_method: squash
 
-projects: []
+projects:
+  - repository: Hikari-Tsai/twitch-bot
+
+  - repository: Hikari-Tsai/dc-manager
