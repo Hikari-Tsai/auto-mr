@@ -2,7 +2,8 @@ name: Promote staging branches
 
 on:
   schedule:
-    - cron: "17 */2 * * *"
+    - cron: "0 8 * * *"
+      timezone: "Asia/Taipei"
   workflow_dispatch:
 
 permissions:

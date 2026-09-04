@@ -17,7 +17,7 @@ AUTO MR 是一個集中管理的 GitHub Actions 自動化工具。它定期檢�
 ## 運作方式
 
 ```text
-每兩小時／手動觸發
+每天 08:00（台北時間）／手動觸發
         │
         ▼
 讀取 config/projects.yml
@@ -39,7 +39,7 @@ AUTO MR 是一個集中管理的 GitHub Actions 自動化工具。它定期檢�
         GitHub 允許後合併至 main
 ```
 
-- 每兩小時執行，也能從 Actions 頁面手動觸發。
+- 每天台北時間 08:00 執行，也能從 Actions 頁面手動觸發。
 - 同一組來源與目標 branch 只維護一張 open PR。
 - 尊重 required checks、required reviews、deployment gates 與 rulesets。
 - 等待 CI 或人工批准不視為錯誤。
@@ -152,7 +152,7 @@ Settings → General → Pull Requests → Allow auto-merge
 ```
 
 - 已開啟：CI 或 review 通過後，GitHub 立即合併。
-- 未開啟：PR 保持 open，AUTO MR 在下一次排程重新嘗試，最多約延遲兩小時。
+- 未開啟：PR 保持 open，AUTO MR 在隔天排程重新嘗試，最多約延遲一天。
 
 AUTO MR 不會自行修改 repository 的 auto-merge 或 branch protection 設定。
 
@@ -162,10 +162,11 @@ Workflow 位於 [`.github/workflows/promote.yml`](.github/workflows/promote.yml)
 
 ```yaml
 schedule:
-  - cron: "17 */2 * * *"
+  - cron: "0 8 * * *"
+    timezone: "Asia/Taipei"
 ```
 
-GitHub Actions cron 使用 UTC。台北時間同樣是每個偶數小時的第 17 分鐘，例如 `00:17`、`02:17`、`04:17`。GitHub 忙碌時可能稍有延遲。
+此排程明確使用 `Asia/Taipei` 時區，每天早上 `08:00` 執行。GitHub 忙碌時可能稍有延遲。
 
 ## 執行結果
 

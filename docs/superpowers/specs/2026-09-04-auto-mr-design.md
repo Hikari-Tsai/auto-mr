@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create a central GitHub Actions repository that checks a configured set of repositories every two hours, opens a pull request from each repository's staging branch to its main branch when changes exist, and arranges for the pull request to merge after that repository's required CI, review, deployment, and branch-protection conditions are satisfied.
+Create a central GitHub Actions repository that checks a configured set of repositories every day at 08:00 Asia/Taipei, opens a pull request from each repository's staging branch to its main branch when changes exist, and arranges for the pull request to merge after that repository's required CI, review, deployment, and branch-protection conditions are satisfied.
 
 The first version targets repositories owned by one personal GitHub account. It uses a fine-grained personal access token (PAT), while keeping authentication behind a small boundary so a GitHub App can replace it later.
 
@@ -10,7 +10,7 @@ The first version targets repositories owned by one personal GitHub account. It 
 
 The system will:
 
-- Run on a two-hour schedule and by manual dispatch.
+- Run daily at 08:00 Asia/Taipei and by manual dispatch.
 - Read project definitions from a version-controlled YAML file.
 - Compare a configurable source branch with a configurable target branch.
 - Reuse an existing open pull request for the same branch pair.
@@ -105,7 +105,8 @@ The workflow will run at a non-hour boundary to reduce peak scheduling delays:
 ```yaml
 on:
   schedule:
-    - cron: "17 */2 * * *"
+    - cron: "0 8 * * *"
+      timezone: "Asia/Taipei"
   workflow_dispatch:
 ```
 
@@ -129,7 +130,7 @@ For every enabled project, the orchestrator will:
 10. If native auto-merge is disabled at repository level, leave the PR open and retry the merge on the next scheduled run.
 11. Record the outcome in the run summary.
 
-Native auto-merge gives immediate merging after a later human approval or CI completion. Repositories intended to receive that behavior must enable **Settings → General → Pull Requests → Allow auto-merge**. The periodic retry is a safe fallback, but may merge up to two hours after requirements become satisfied.
+Native auto-merge gives immediate merging after a later human approval or CI completion. Repositories intended to receive that behavior must enable **Settings → General → Pull Requests → Allow auto-merge**. The periodic retry is a safe fallback, but may merge up to one day after requirements become satisfied.
 
 All merge requests go through GitHub's normal merge API. Branch protection and rulesets remain authoritative; the program does not request bypass privileges.
 

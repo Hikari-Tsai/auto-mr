@@ -19,5 +19,5 @@
     <g transform="translate(1070)"><rect width="330" height="150" rx="24" fill="#171f39" stroke="#22d3a7" stroke-width="3"/><circle cx="52" cy="51" r="14" fill="#22d3a7"/><text x="82" y="61" fill="#f7f9ff" font-size="31" font-weight="700">main</text><text x="34" y="111" fill="#9eabc9" font-size="21">merge when ready</text></g>
     <g fill="none" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" filter="url(#glow)"><path d="M365 75h125"/><path d="M470 57l20 18-20 18"/><path d="M900 75h125"/><path d="M1005 57l20 18-20 18"/></g>
   </g>
-  <text x="1500" y="585" text-anchor="end" fill="#71809f" font-family="ui-monospace, SFMono-Regular, monospace" font-size="18">every 2 hours · idempotent · protection-aware</text>
+  <text x="1500" y="585" text-anchor="end" fill="#71809f" font-family="ui-monospace, SFMono-Regular, monospace" font-size="18">daily at 08:00 · idempotent · protection-aware</text>
 </svg>
