@@ -1,0 +1,6 @@
+defaults:
+  source_branch: staging
+  target_branch: main
+  merge_method: squash
+
+projects: []
