@@ -5,5 +5,5 @@ defaults:
 
 projects:
   - repository: Hikari-Tsai/twitch-bot
-
   - repository: Hikari-Tsai/dc-manager
+  - repository: Hikari-Tsai/code-portfolio
