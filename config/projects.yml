@@ -1,7 +1,7 @@
 defaults:
   source_branch: staging
   target_branch: main
-  merge_method: squash
+  merge_method: merge
 
 projects:
   - repository: Hikari-Tsai/twitch-bot
