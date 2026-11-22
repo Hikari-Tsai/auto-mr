@@ -40,3 +40,17 @@ jobs:
         env:
           AUTO_MR_TOKEN: ${{ secrets.AUTO_MR_TOKEN }}
         run: npm start
+
+  # GitHub 會在公開 repo 連續 60 天沒有活動時自動停用 schedule workflow。
+  # 每次排程執行時重新 enable 本 workflow，即可重置這個計時器，不需要產生空 commit。
+  keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Keep scheduled workflow enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${GITHUB_REPOSITORY}/actions/workflows/promote.yml/enable"
